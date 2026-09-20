@@ -15,7 +15,6 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; background: #0a0a0f; color: #f4f4f5; font-family: 'DM Sans', sans-serif; }
 ::selection { background: #8b5cf6; color: white; }
-
 .grid-bg { background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 72px 72px; mask-image: linear-gradient(to bottom, black 10%, transparent 90%); }
 .gradient-text { background: linear-gradient(105deg, #818cf8 0%, #c084fc 60%, #f0abfc 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .glass { background: rgba(18,18,26,.65); border: 1px solid rgba(255,255,255,.09); backdrop-filter: blur(18px); }
@@ -26,7 +25,7 @@ body { margin: 0; background: #0a0a0f; color: #f4f4f5; font-family: 'DM Sans', s
 .blob { animation: float 8s ease-in-out infinite; }
 @keyframes float { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(25px,-20px) scale(1.06); } }
 
-/* Enhanced lightweight intro: 80 DOM particles, no canvas/WebGL required. */
+/* Intro animation */
 .intro-overlay { position: fixed; inset: 0; z-index: 100; overflow: hidden; pointer-events: none; background: #0a0a0f; opacity: 1; transition: opacity .42s ease; }
 .intro-overlay::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 72px 72px; opacity: .65; }
 .intro-overlay.intro-complete { opacity: 0; }
@@ -35,9 +34,7 @@ body { margin: 0; background: #0a0a0f; color: #f4f4f5; font-family: 'DM Sans', s
 .intro-particles { position: absolute; inset: 0; }
 .intro-particle { position: absolute; left: var(--x); top: var(--y); display: block; width: var(--size); height: var(--size); opacity: .42; background: var(--color); box-shadow: 0 0 16px 3px var(--color), 0 0 42px 8px color-mix(in srgb, var(--color) 65%, transparent); transform: translate(-50%, -50%) rotate(var(--angle)); will-change: left, top, transform, opacity, filter; }
 .intro-particle::after { content: ''; position: absolute; left: 50%; top: 50%; width: calc(var(--size) * 5); height: calc(var(--size) * .7); border-radius: 999px; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color) 80%, transparent)); filter: blur(6px); opacity: .7; transform: translate(-92%, -50%) rotate(-18deg); transform-origin: right center; }
-.intro-particle-0 { border-radius: 999px; }
-.intro-particle-1 { border-radius: 2px; }
-.intro-particle-2 { width: calc(var(--size) * 3.6); height: 1.5px; transform-origin: center; }
+.intro-particle-0 { border-radius: 999px; } .intro-particle-1 { border-radius: 2px; } .intro-particle-2 { width: calc(var(--size) * 3.6); height: 1.5px; transform-origin: center; }
 .intro-converging .intro-particle { animation: particle-converge var(--duration) cubic-bezier(.16, .86, .25, 1) var(--delay) forwards; }
 @keyframes particle-converge { 0% { opacity: .18; filter: blur(2px); transform: translate(-50%, -50%) rotate(var(--angle)) scale(.7); } 32% { opacity: .85; filter: blur(.2px); } 100% { left: 50%; top: 50%; opacity: .95; filter: blur(.5px); transform: translate(-50%, -50%) rotate(calc(var(--angle) + 260deg)) scale(.55); } }
 .intro-glow { position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; border-radius: 999px; background: #c084fc; transform: translate(-50%, -50%) scale(0); }
@@ -45,12 +42,18 @@ body { margin: 0; background: #0a0a0f; color: #f4f4f5; font-family: 'DM Sans', s
 .intro-flash { position: absolute; left: 50%; top: 50%; width: min(48vw, 620px); height: min(48vw, 620px); border-radius: 999px; opacity: 0; filter: blur(18px); transform: translate(-50%, -50%) scale(.08); background: radial-gradient(circle, rgba(255,255,255,.98) 0 3%, rgba(240,171,252,.9) 10%, rgba(168,85,247,.66) 30%, rgba(99,102,241,.3) 52%, transparent 75%); }
 .intro-reveal .intro-flash { animation: intro-screen-flash .52s cubic-bezier(.16, .84, .32, 1) forwards; }
 .intro-brand { position: absolute; left: 50%; top: 50%; color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 7vw, 5rem); font-weight: 700; letter-spacing: -.08em; opacity: 0; transform: translate(-50%, -50%) scale(.82); }
-.intro-brand span { background: linear-gradient(105deg, #818cf8, #c084fc 60%, #f0abfc); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .intro-reveal .intro-brand { animation: intro-logo-in .6s cubic-bezier(.22, .85, .32, 1) .12s forwards; }
-.intro-sound-toggle { position: absolute; right: 20px; bottom: 20px; z-index: 2; pointer-events: auto; width: 30px; height: 30px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; color: rgba(255,255,255,.58); background: rgba(18,18,26,.55); font-size: 15px; cursor: pointer; backdrop-filter: blur(10px); transition: color .2s ease, border-color .2s ease, background .2s ease; }
-.intro-sound-toggle:hover, .intro-sound-toggle[aria-pressed="true"] { color: #f0abfc; border-color: rgba(192,132,252,.7); background: rgba(168,85,247,.16); }
+.intro-sound-toggle { position: absolute; right: 20px; bottom: 20px; z-index: 2; pointer-events: auto; width: 30px; height: 30px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; color: rgba(255,255,255,.58); background: rgba(18,18,26,.55); font-size: 15px; cursor: pointer; backdrop-filter: blur(10px); }
 @keyframes intro-core-flash { 0% { opacity: .95; transform: translate(-50%, -50%) scale(.4); box-shadow: 0 0 40px 20px #f0abfc, 0 0 160px 70px #6366f1; } 100% { opacity: 0; transform: translate(-50%, -50%) scale(14); box-shadow: 0 0 0 transparent; } }
 @keyframes intro-screen-flash { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.08); } 18% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.65); } }
 @keyframes intro-logo-in { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+
+/* Fix hero clipping and replace legacy location/wordmark text visually. */
+main#top > section:first-child h1 { line-height: 1.08; overflow: visible; padding-block: .08em .12em; }
+main#top > section:first-child h1 > span { display: inline-block; padding-block: .02em; }
+main#top > section:first-child > div:last-child > div:first-child > div:first-child { font-size: 0; }
+main#top > section:first-child > div:last-child > div:first-child > div:first-child::after { content: 'Доступен для новых проектов'; font-size: .875rem; }
+nav a[href='#top'], footer a[href='#top'] { font-size: 0; }
+nav a[href='#top']::after, footer a[href='#top']::after { content: 'FORMA'; font: 700 1.25rem/1 'Space Grotesk', sans-serif; letter-spacing: -.06em; }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } .reveal { opacity: 1; transform: none; } .intro-overlay { display: none !important; } }
