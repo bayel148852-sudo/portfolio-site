@@ -9,9 +9,8 @@ const services = [
   ['03', 'Каталоги и интернет-магазины', 'Структурируем ассортимент и сокращаем путь от интереса до покупки', '▦'],
   ['04', 'Автоматизация заявок', 'Свяжем сайт с WhatsApp, Telegram или CRM, чтобы лиды не терялись', '↗'],
 ]
-
 const pricing = [
-  ['Сайт-визитка', 'от 15 000 сом', ['До 5 блоков', 'Адапт��вный дизайн', 'Форма заявки', 'Публикация на домене']],
+  ['Сайт-визитка', 'от 15 000 сом', ['До 5 блоков', 'Адаптивный дизайн', 'Форма заявки', 'Публикация на домене']],
   ['Сайт с автоматизацией', 'от 25 000 сом', ['Уникальный дизайн', 'WhatsApp / Telegram', 'Онлайн-запись', 'Подключение аналитики']],
   ['Каталог / магазин', 'от 40 000 сом', ['Каталог товаров', 'Корзина и заявки', 'Интеграции с CRM', 'Поддержка после запуска']],
 ]
@@ -24,63 +23,20 @@ function SocialIcon({ type }) {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible')),
-      { threshold: 0.12 },
-    )
-    document.querySelectorAll('.reveal').forEach(element => observer.observe(element))
-    return () => observer.disconnect()
-  }, [])
-
+  useEffect(() => { const observer = new IntersectionObserver(entries => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible')), { threshold: .12 }); document.querySelectorAll('.reveal').forEach(element => observer.observe(element)); return () => observer.disconnect() }, [])
   const close = () => setMenuOpen(false)
-
   return <div className="site-shell">
-    <nav className="site-nav">
-      <div className="nav-inner">
-        <a href="#top" className="brand">FORMA</a>
-        <div className="nav-links">
-          <a href="#services">Услуги</a>
-          <a href="#process">Как работаем</a>
-          <a href="#pricing">Стоимость</a>
-          <a href="#contact" className="nav-cta">Обсудить проект <ArrowUpRight className="inline size-3" /></a>
-        </div>
-        <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Открыть меню">{menuOpen ? <X /> : <Menu />}</button>
-      </div>
-      {menuOpen && <div className="mobile-menu"><a onClick={close} href="#services">Услуги</a><a onClick={close} href="#process">Как работаем</a><a onClick={close} href="#pricing">Стоимость</a><a onClick={close} href="#contact">Обсудить проект →</a></div>}
-    </nav>
-
+    <nav className="site-nav"><div className="nav-inner"><a href="#top" className="brand">FORMA</a><div className="nav-links"><a href="#services">Услуги</a><a href="#process">Как работаем</a><a href="#pricing">Стоимость</a><a href="#contact" className="nav-cta">Обсудить проект <ArrowUpRight className="inline size-3" /></a></div><button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Открыть меню">{menuOpen ? <X /> : <Menu />}</button></div>{menuOpen && <div className="mobile-menu"><a onClick={close} href="#services">Услуги</a><a onClick={close} href="#process">Как работаем</a><a onClick={close} href="#pricing">Стоимость</a><a onClick={close} href="#contact">Обсудить проект →</a></div>}</nav>
     <main id="top">
-      <section className="hero-section">
-        <div className="grid-bg hero-grid" /><div className="hero-orb orb-one" /><div className="hero-orb orb-two" />
-        <div className="hero-inner">
-          <div className="hero-copy">
-            <div className="availability"><i />Доступен для новых проектов</div>
-            <h1 className="hero-title">Быстрые сайты<br /><em>собранные с AI</em><br />для вашего бизнеса</h1>
-            <p className="hero-subtitle">Создаю современные сайты с продуманным дизайном и автоматизацией — от первой идеи до публикации на вашем домене</p>
-            <div className="hero-actions"><a href="#services" className="button button-primary">Посмотреть услуги <ArrowUpRight className="inline size-4" /></a><a href="https://wa.me/996555000000" className="button button-ghost">Написать в WhatsApp</a></div>
-            <div className="hero-proof"><span><Zap className="size-3 text-violet-300" /> AI-assisted development</span><span><i /> Worldwide clients</span></div>
-          </div>
-          <div className="hero-showcase" aria-hidden="true"><div className="showcase-label">DIGITAL STUDIO <span>2025</span></div><div className="showcase-panel panel-main"><div className="panel-top"><span>FORMA / SYSTEM</span><span>↗</span></div><div className="panel-gradient"><b>BUILD<br /><span>FORWARD</span></b><small>DESIGN · CODE · AUTOMATION</small></div><div className="panel-bottom"><span>Web experiences</span><span>01</span></div></div><div className="showcase-panel panel-small"><div className="signal">✦</div><span>SMART<br />BY DESIGN</span><small>AI / 01</small></div><div className="orbit-label">SCROLL TO EXPLORE ↓</div></div>
-        </div>
-      </section>
-
-      <section className="reveal intro-strip"><div className="section-wrap intro-grid"><div><p className="eyebrow">01 / О подходе</p><h2>Большой результат<br /><span>без лишнего шума</span></h2></div><div><p className="body-copy">Использую современные AI-инструменты, чтобы работать быстрее, но не жертвовать качеством. Вы получаете профессиональный сайт, который помогает бизнесу расти — без месяцев ожидания и агентских накруток</p><div className="stats"><div><b>2–3</b><span>недели<br />на запуск</span></div><div><b>15k<span>+</span></b><span>сом<br />старт</span></div><div><b>24/7</b><span>поддержка<br />после запуска</span></div></div></div></div></section>
-
-      <section className="reveal coming-section"><div className="section-wrap coming-card"><div className="coming-orb" /><div className="coming-mark">✦</div><div><p className="eyebrow">02 / Скоро</p><h2>Первые кейсы<br /><span>уже в работе</span></h2><p className="body-copy">Я собираю первые проекты, которыми будет приятно поделиться. Пока здесь — чистый лист и пространство для вашего бизнеса</p></div><a href="#contact" className="button button-ghost">Стать первым кейсом <ArrowUpRight className="inline size-4" /></a></div></section>
-
+      <section className="hero-section"><div className="grid-bg hero-grid" /><div className="hero-orb orb-one" /><div className="hero-orb orb-two" /><div className="hero-inner"><div className="hero-copy"><div className="availability"><i />Доступен для новых проектов</div><h1 className="hero-title">Быстрые сайты<br /><em>для современного</em><br />бизнеса</h1><p className="hero-subtitle">Создаю современные сайты с продуманным дизайном и автоматизацией — от первой идеи до публикации на вашем домене</p><div className="hero-actions"><a href="#services" className="button button-primary">Посмотреть услуги <ArrowUpRight className="inline size-4" /></a><a href="https://wa.me/996555000000" className="button button-ghost">Написать в WhatsApp</a></div><div className="hero-proof"><span><Zap className="size-3 text-violet-300" /> Быстрый запуск</span><span><i /> Worldwide clients</span></div></div><div className="hero-showcase" aria-hidden="true"><div className="showcase-label">DIGITAL STUDIO <span>2025</span></div><div className="showcase-panel panel-main"><div className="panel-top"><span>FORMA / SYSTEM</span><span>↗</span></div><div className="panel-gradient"><b>BUILD<br /><span>FORWARD</span></b><small>DESIGN · CODE · AUTOMATION</small></div><div className="panel-bottom"><span>Web experiences</span><span>01</span></div></div><div className="showcase-panel panel-small"><div className="signal">✦</div><span>SMART<br />BY DESIGN</span><small>WEB / 01</small></div><div className="orbit-label">SCROLL TO EXPLORE ↓</div></div></div></section>
+      <section className="reveal intro-strip"><div className="section-wrap intro-grid"><div><p className="eyebrow">01 / О подходе</p><h2>Большой результат<br /><span>без ��ишнего шума</span></h2></div><div><p className="body-copy">Создаю профессиональные сайты, которые помогают бизнесу расти — без месяцев ожидания и агентских накруток</p><div className="stats"><div><b>2–3</b><span>недели<br />на запуск</span></div><div><b>15k<span>+</span></b><span>сом<br />старт</span></div><div><b>24/7</b><span>поддержка<br />после запуска</span></div></div></div></div></section>
+      <section className="reveal coming-section"><div className="section-wrap coming-card"><div className="coming-orb" /><div className="coming-mark">✦</div><div><p className="eyebrow">02 / Скоро</p><h2>Первые кейсы<br /><span>уже в работе</span></h2><p className="body-copy">Я собираю первые проекты, которыми бу��ет приятно поделиться. Пока здесь — чистый лист и пространство для вашего бизнеса</p></div><a href="#contact" className="button button-ghost">Стать первым кейсом <ArrowUpRight className="inline size-4" /></a></div></section>
       <section id="services" className="reveal services-section"><div className="section-wrap"><div className="section-heading"><div><p className="eyebrow">03 / Что я делаю</p><h2>Инструменты для<br /><span>вашего роста</span></h2></div><p className="heading-note">Сайт — это не просто красивая страница. Это ваш лучший менеджер по продажам</p></div><div className="services-bento">{services.map(([number, title, description, icon]) => <article className="service-card" key={title}><div className="service-top"><span>{number}</span><b>{icon}</b></div><h3>{title}</h3><p>{description}</p><ArrowUpRight className="service-arrow size-5" /></article>)}</div></div></section>
-
-      <section id="process" className="reveal section-wrap process-section"><p className="eyebrow">04 / Простой процесс</p><h2>От идеи <span>до запуска</span></h2><div className="process-grid">{[['01','Знакомимся','Обсуждаем задачу, цели и стиль бизнеса'],['02','Собираю демо','Показываю первую версию в вашем стиле'],['03','Шлифуем','Вносим правки и доводим детали до идеала'],['04','Запускаем','Публикую сайт на ��ашем домене']].map(([number, title, description], index) => <div className="process-step" key={number}><div className="step-number">{number}</div>{index < 3 && <div className="step-line" />}<h3>{title}</h3><p>{description}</p></div>)}</div></section>
-
+      <section id="process" className="reveal section-wrap process-section"><p className="eyebrow">04 / Простой процесс</p><h2>От идеи <span>до запуска</span></h2><div className="process-grid">{[['01','Знакомимся','Обсуждаем задачу, цели и стиль бизнеса'],['02','Собираю демо','Показываю первую версию в вашем стиле'],['03','Шлифуем','Вносим правки и доводим детали до идеала'],['04','Запускаем','Публикую сайт на вашем домене']].map(([number, title, description], index) => <div className="process-step" key={number}><div className="step-number">{number}</div>{index < 3 && <div className="step-line" />}<h3>{title}</h3><p>{description}</p></div>)}</div></section>
       <section id="pricing" className="reveal pricing-section"><div className="section-wrap"><div className="section-heading"><div><p className="eyebrow">05 / Инвестиция в бизнес</p><h2>Выберите свой<br /><span>следующий шаг</span></h2></div><p className="heading-note">Финальная стоимость зависит от задачи. Обсудим проект и подберём решение</p></div><div className="pricing-grid">{pricing.map(([title, price, features], index) => <article className={`price-card ${index === 1 ? 'popular' : ''}`} key={title}>{index === 1 && <span className="popular-label">POPULAR</span>}<h3>{title}</h3><b>{price}</b><ul>{features.map(feature => <li key={feature}><Check className="size-4" />{feature}</li>)}</ul><a href="#contact" className="price-button">Обсудить проект <ArrowUpRight className="inline size-3" /></a></article>)}</div></div></section>
-
       <section id="contact" className="reveal contact-section"><div className="contact-glow" /><Sparkles className="mx-auto mb-7 size-6 text-violet-300" /><p className="eyebrow">06 / Начнём</p><h2>Готовы обсудить<br /><span>ваш проект</span></h2><p>Расскажите, что хотите создать. Я отвечу в течение рабочего дня</p><div className="contact-actions"><a href="https://wa.me/996555000000" className="button button-primary"><MessageCircle className="inline size-4" /> Написать в WhatsApp</a><a href="https://t.me/your_username" className="button button-ghost">Telegram <ArrowUpRight className="inline size-4" /></a></div></section>
     </main>
-
     <footer><div className="footer-inner"><div><a href="#top" className="brand">FORMA</a><p>Сайты с характером<br />для клиентов по всему миру</p></div><div className="socials"><a href="#" aria-label="Instagram"><SocialIcon type="instagram" /></a><a href="#" aria-label="Telegram"><SocialIcon type="telegram" /></a><a href="#" aria-label="WhatsApp"><SocialIcon type="whatsapp" /></a><span>© 2025 FORMA</span></div></div></footer>
   </div>
 }
-
 createRoot(document.getElementById('root')).render(<App />)
